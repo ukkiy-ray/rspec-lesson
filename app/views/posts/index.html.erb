@@ -1,5 +1,8 @@
 <div class="container">
-  <h1 style="margin-top: 40px;">Post 一覧</h1>
+  <div class="top-contents">
+    <h1 style="margin-top: 40px;">Post 一覧</h1>
+    <%= link_to 'New Post', new_post_path, type: "button", class: "btn btn-outline-dark btn-rounded" %>
+  </div>
   <hr>
   <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="card" style="margin-right: 10px;">
