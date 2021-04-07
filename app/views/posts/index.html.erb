@@ -4,54 +4,20 @@
     <%= link_to 'New Post', new_post_path, type: "button", class: "btn btn-outline-dark btn-rounded" %>
   </div>
   <hr>
-  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="card" style="margin-right: 10px;">
-      <img
-        src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the
-          card's content.
-        </p>
-        <a href="#!" class="btn btn-primary">Update</a>
-        <a href="#!" class="btn btn-primary">Delete</a>
+  <div class="d-flex justify-content-center align-items-start" style="height: 100vh; flex-wrap: wrap;">
+    <% @posts.each do |post| %>
+      <div class="card shadow-2-strong" style="margin: 15px;">
+        <%= image_tag post.image.variant(resize: '400x500'), class: 'card-img-top' if post.image.attached? %>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text">
+            <%= post.description %>
+          </p>
+          <a href="#!" class="btn btn-primary">Update</a>
+          <a href="#!" class="btn btn-primary">Delete</a>
+        </div>
       </div>
-    </div>
-    <div class="card" style="margin-right: 10px;">
-      <img
-        src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the
-          card's content.
-        </p>
-        <a href="#!" class="btn btn-primary">Update</a>
-        <a href="#!" class="btn btn-primary">Delete</a>
-      </div>
-    </div>
-    <div class="card" style="margin-right: 10px;">
-      <img
-        src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the
-          card's content.
-        </p>
-        <a href="#!" class="btn btn-primary">Update</a>
-        <a href="#!" class="btn btn-primary">Delete</a>
-      </div>
-    </div>
+    <% end %>
+    
   </div>
 </div>
