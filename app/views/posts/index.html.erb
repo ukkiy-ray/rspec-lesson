@@ -13,7 +13,7 @@
           <p class="card-text">
             <%= post.description %>
           </p>
-          <a href="#!" class="btn btn-primary">Update</a>
+          <%= link_to 'UPDATE', edit_post_path(post.id), class:"btn btn-primary" %>
           <%= link_to 'DELETE', post_path(post.id), method: :delete, class:'btn btn-dark' %>
         </div>
       </div>
