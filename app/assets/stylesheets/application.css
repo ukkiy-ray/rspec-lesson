@@ -27,3 +27,32 @@
  .card-text {
    height: 60%;
  }
+
+ .user-form {
+   padding-top: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .form-group {
+   margin-bottom: 30px;
+   height: 25px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .form-text-wrap {
+   margin-right: 20px;
+ }
+
+ .form-text {
+   font-size: 18px;
+ }
+
+ .input-birth-wrap {
+   height: 25px;
+   display: flex;
+   justify-content: center;
+ }

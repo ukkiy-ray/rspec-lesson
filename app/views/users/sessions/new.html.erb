@@ -1,26 +1,29 @@
-<h2>Log in</h2>
+<div class="container user-form">
+  <!-- Content here -->
+  <%= render "users/shared/error_messages", resource: resource %>
+  <div class="card text-center shadow-2-strong">
+    <div class="card-header">ログイン</div>
+    <div class="card-body">
+      <h5 class="card-title">Sign in</h5>
+      <div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <!-- Email input -->
+          
+          <div class="form-outline mb-4">
+            <%= f.email_field :email, autofocus: true, id:"form1Example2", class:"form-control", autocomplete: "email" %>
+            <label class="form-label" for="form1Example2">Email address</label>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <%= f.password_field :password, id:"form1Example3", class:"form-control", autocomplete: "new-password" %>
+            <label class="form-label" for="form1Example3">Password</label>
+          </div>
+          <!-- Submit button -->
+          <%= f.submit "Sign in", class:"btn btn-primary btn-block" %>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="card-footer text-muted">新規登録はこちら→<%= render "users/shared/links" %></div>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
