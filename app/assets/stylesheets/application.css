@@ -56,3 +56,8 @@
    display: flex;
    justify-content: center;
  }
+
+ .user-name {
+   color: #999;
+   margin-left: 8px;
+ }

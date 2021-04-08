@@ -1,7 +1,7 @@
 <div class="container">
   <div class="top-contents">
     <h1 style="margin-top: 40px;">Post 一覧</h1>
-    <%= link_to 'New Post', new_post_path, type: "button", class: "btn btn-outline-dark btn-rounded" %>
+    <%= link_to '+ New Post', new_post_path, type: "button", class: "btn btn-outline-dark btn-rounded" %>
   </div>
   <hr>
   <div class="d-flex justify-content-center align-items-start" style="height: 100vh; flex-wrap: wrap;">
@@ -9,7 +9,10 @@
       <div class="card shadow-2-strong" style="margin: 15px;">
         <%= image_tag post.image.variant(resize: '400x500'), class: 'card-img-top' if post.image.attached? %>
         <div class="card-body">
-          <h5 class="card-title"><%= post.title %></h5>
+          <h5 class="card-title">
+            <%= post.title %>
+            <small class="user-name">by <%= post.user.nickname %></small>
+          </h5>
           <p class="card-text">
             <%= post.description %>
           </p>
