@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :posts, foreign_key: :user_id, dependent: :destroy
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true, length: { maximum: 10 }
   validates :birthday, presence: true
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
