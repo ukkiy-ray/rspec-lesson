@@ -1,7 +1,9 @@
 <div class="container">
   <div class="top-contents">
     <h1 style="margin-top: 40px;">Post 一覧</h1>
-    <%= link_to '+ New Post', new_post_path, type: "button", class: "btn btn-outline-dark btn-rounded" %>
+    <% if user_signed_in? %>
+      <%= link_to '投稿する', new_post_path, type: "button", class: "btn btn-outline-dark btn-rounded" %>
+    <% end %>
   </div>
   <hr>
   <div class="d-flex justify-content-center align-items-start" style="height: 100vh; flex-wrap: wrap;">

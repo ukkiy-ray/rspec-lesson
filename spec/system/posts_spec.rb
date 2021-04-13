@@ -14,6 +14,8 @@ RSpec.describe "Posts", type: :system do
       fill_in 'Password', with: @user.password
       find('input[name="commit"]').click
       expect(current_path).to eq(root_path)
+      # 新規投稿ページへのリンクがあることを確認する
+      expect(page).to have_content('投稿する')
       # 投稿ページに移動する
       visit new_post_path
       # フォームに情報を入力する
@@ -38,7 +40,9 @@ RSpec.describe "Posts", type: :system do
   context '投稿ができないとき'do
     it 'ログインしていないと新規投稿ページに遷移できない' do
       # トップページに遷移する
+      visit root_path
       # 新規投稿ページへのリンクがない
+      expect(page).to have_no_content('投稿する')
     end
   end
 end
