@@ -46,3 +46,33 @@ RSpec.describe "Posts", type: :system do
     end
   end
 end
+
+RSpec.describe 'Post編集', type: :system do
+  before do
+    @post1 = FactoryBot.create(:post)
+    @post2 = FactoryBot.create(:post)
+  end
+  context 'Postの編集ができるとき' do
+    it 'ログインしたユーザーは自分が投稿したPostの編集ができる' do
+      # post1を投稿したユーザーでログインする
+      # post1に「Update」ボタンがあることを確認する
+      # 編集ページへ遷移する
+      # すでに投稿済みの内容がフォームに入っていることを確認する
+      # 投稿内容を編集する
+      # 編集してもPostモデルのカウントは変わらないことを確認する
+      # トップページに遷移したことを確認する
+      # トップページには先ほど変更した内容のPostが存在することを確認する
+    end
+  end
+  context 'Post編集ができないとき' do
+    it 'ログインしたユーザーは自分以外が投稿したPostの編集画面には遷移できない' do
+      # post1を投稿したユーザーでログインする
+      # post2に「Update」ボタンがないことを確認する
+    end
+    it 'ログインしていないとPostの編集画面には遷移できない' do
+      # トップページにいる
+      # post1に「Update」ボタンがないことを確認する
+      # post2に「Update」ボタンがないことを確認する
+    end
+  end
+end
