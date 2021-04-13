@@ -58,14 +58,14 @@
                   <a class="nav-link" href="#">こんにちは、<%= current_user.nickname %>さん</a>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link active" %>
+                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link active user_nav" %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to 'Sign up', new_user_registration_path, class: "nav-link active" %>
+                  <%= link_to 'Sign up', new_user_registration_path, class: "nav-link active user_nav" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'Sign in', new_user_session_path, class: "nav-link active" %>
+                  <%= link_to 'Sign in', new_user_session_path, class: "nav-link active user_nav" %>
                 </li>
               <% end %>
             </ul>
