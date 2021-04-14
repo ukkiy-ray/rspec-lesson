@@ -123,14 +123,27 @@ RSpec.describe 'Post削除', type: :system do
     @post2 = FactoryBot.create(:post)
     sleep(1)
   end
-  end
   context 'Postの削除ができるとき' do
     it 'ログインしたユーザーは自分の投稿を削除できる' do
       # post1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'Email', with: @post1.user.email
+      fill_in 'Password', with: @post1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # post1に「DELETE」ボタンがあることを確認する
+      expect(
+        all('.card-body')[0].hover
+      ).to have_link 'DELETE', href: post_path(@post1)
       # 投稿を削除するとレコードの数が1減ることを確認する
-      # トップページに遷移する
+      expect{
+        all('.card-body')[0].hover.find_link('DELETE', href: post_path(@post1)).click
+      }.to change { Post.count }.by(-1)
+      # トップページに遷移したことを確認する
+      expect(current_path).to eq(root_path)
       # トップページにはpost1の内容が存在しないことを確認する
+      expect(page).to have_no_content(@post1.title)
+      expect(page).to have_no_content(@post1.description)
     end
   end
   context 'Postの削除ができないとき' do
