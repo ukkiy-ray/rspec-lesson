@@ -1,28 +1,39 @@
 <div class="container">
   <div class="top-contents">
-    <h1 style="margin-top: 40px;">Post 一覧</h1>
+    <h1>Post 一覧</h1>
     <% if user_signed_in? %>
-      <%= link_to '投稿する', new_post_path, type: "button", class: "btn btn-outline-dark btn-rounded" %>
+      <%= link_to new_post_path, class: "btn btn-warning btn-floating new-post-btn" do %>
+        <i class="fas fa-pen"></i>
+      <% end %>
     <% end %>
   </div>
   <hr>
   <div class="d-flex justify-content-center align-items-start" style="height: 100vh; flex-wrap: wrap;">
     <% @posts.each do |post| %>
-      <div class="card shadow-2-strong" style="margin: 15px;">
+      <div class="card shadow-2-strong">
         <%= image_tag post.image.variant(resize: '400x500'), class: 'card-img-top' if post.image.attached? %>
-        <div class="card-body">
-          <h5 class="card-title">
-            <%= post.title %>
-            <small class="user-name">by <%= post.user.nickname %></small>
-          </h5>
-          <p class="card-text">
-            <%= post.description %>
-          </p>
-          <% if user_signed_in? && post.user_id == current_user.id %>
-            <%= link_to 'UPDATE', edit_post_path(post.id), class:"btn btn-primary" %>
-            <%= link_to 'DELETE', post_path(post.id), method: :delete, class:'btn btn-dark' %>
-          <% end %>
-        </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= post.title %>
+              <small class="user-name">by <%= post.user.nickname %></small>
+            </h5>
+            <p class="card-text">
+              <%= post.description %>
+            </p>
+            <div class="bottom-contents">
+              <% if user_signed_in? && post.user_id == current_user.id %>
+                <%= link_to edit_post_path(post.id), class:"btn btn-danger btn-floating" do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to post_path(post.id), method: :delete, class:'btn btn-dark btn-floating' do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+              <% end %>
+              <%= link_to post_path(post.id), class:'btn btn-info btn-floating' do %>
+                <i class="fas fa-share"></i>
+              <% end %>
+            </div>
+          </div>
       </div>
     <% end %>
     
