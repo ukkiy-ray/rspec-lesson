@@ -62,7 +62,11 @@ RSpec.describe 'Post編集', type: :system do
       fill_in 'Password', with: @post1.user.password
       find('input[name="commit"]').click
       expect(current_path).to eq(root_path)
-      # post1の編集ページへ遷移する
+      # post1に「Update」ボタンがあることを確認する
+      expect(
+        all('.card-body')[0].hover
+      ).to have_link 'UPDATE', href: edit_post_path(@post1)
+      # 編集ページへ遷移する
       visit edit_post_path(@post1)
       # すでに投稿済みの内容がフォームに入っていることを確認する
       expect(
