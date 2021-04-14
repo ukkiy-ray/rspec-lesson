@@ -116,3 +116,32 @@ RSpec.describe 'Post編集', type: :system do
     end
   end
 end
+
+RSpec.describe 'Post削除', type: :system do
+  before do
+    @post1 = FactoryBot.create(:post)
+    @post2 = FactoryBot.create(:post)
+    sleep(1)
+  end
+  end
+  context 'Postの削除ができるとき' do
+    it 'ログインしたユーザーは自分の投稿を削除できる' do
+      # post1を投稿したユーザーでログインする
+      # post1に「DELETE」ボタンがあることを確認する
+      # 投稿を削除するとレコードの数が1減ることを確認する
+      # トップページに遷移する
+      # トップページにはpost1の内容が存在しないことを確認する
+    end
+  end
+  context 'Postの削除ができないとき' do
+    it 'ログインしたユーザーは自分以外のPostを削除できない' do
+      # post1を投稿したユーザーでログインする
+      # post2に「DELETE」ボタンが無いことを確認する
+    end
+    it 'ログインしていないとPostの削除ボタンがない' do
+      # トップページに移動する
+      # post1に「DELETE」ボタンが無いことを確認する
+      # post2に「DELETE」ボタンが無いことを確認する
+    end
+  end
+end
