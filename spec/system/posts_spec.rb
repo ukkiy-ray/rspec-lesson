@@ -92,12 +92,27 @@ RSpec.describe 'Post編集', type: :system do
   context 'Post編集ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿したPostの編集画面には遷移できない' do
       # post1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'Email', with: @post1.user.email
+      fill_in 'Password', with: @post1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # post2に「Update」ボタンがないことを確認する
+      expect(
+        all('.card-body')[1].hover
+      ).to have_no_link 'UPDATE', href: edit_post_path(@post2)
     end
     it 'ログインしていないとPostの編集画面には遷移できない' do
       # トップページにいる
+      visit root_path
       # post1に「Update」ボタンがないことを確認する
+      expect(
+        all('.card-body')[0].hover
+      ).to have_no_link 'UPDATE', href: edit_post_path(@post1)
       # post2に「Update」ボタンがないことを確認する
+      expect(
+        all('.card-body')[1].hover
+      ).to have_no_link 'UPDATE', href: edit_post_path(@post2)
     end
   end
 end
