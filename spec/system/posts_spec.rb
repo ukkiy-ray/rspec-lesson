@@ -149,12 +149,27 @@ RSpec.describe 'Post削除', type: :system do
   context 'Postの削除ができないとき' do
     it 'ログインしたユーザーは自分以外のPostを削除できない' do
       # post1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'Email', with: @post1.user.email
+      fill_in 'Password', with: @post1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # post2に「DELETE」ボタンが無いことを確認する
+      expect(
+        all('.card-body')[1].hover
+      ).to have_no_link 'DELETE', href: post_path(@post2)
     end
     it 'ログインしていないとPostの削除ボタンがない' do
       # トップページに移動する
+      visit root_path
       # post1に「DELETE」ボタンが無いことを確認する
+      expect(
+        all('.card-body')[0].hover
+      ).to have_no_link 'DELETE', href: post_path(@post1)
       # post2に「DELETE」ボタンが無いことを確認する
+      expect(
+        all('.card-body')[1].hover
+      ).to have_no_link 'DELETE', href: post_path(@post2)
     end
   end
 end
