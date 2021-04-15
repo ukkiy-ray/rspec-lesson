@@ -29,18 +29,32 @@
     <div class="col-6 comments-box">
       <h2><i class="fas fa-comment"></i> Comments</h2>
 
-      <div class="form-outline">
+      <%# <div class="form-outline">
         <input type="text" id="formControlDefault" class="form-control form-control-lg" />
         <label class="form-label" for="formControlDefault">コメントをする</label>
-      </div>
+      </div> %>
 
-      <ul class="list-group comment-list">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
+      <% if user_signed_in? %>
+        <%= form_with(model: [@post, @comment], local: true) do |form| %>
+          <div class="form-outline">
+            <%= form.text_field :content, id:"formControlDefault", class:"form-control form-control" %>
+            <label class="form-label" for="formControlDefault">公開コメントを入力</label>
+          </div>
+        <% end %>
+      <% else %>
+        <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+      <% end %>
+
+      <% if @comments %>
+        <ul class="list-group comment-list">
+          <% @comments.each do |comment| %>
+            <li class="list-group-item">
+                <strong><%= comment.user.nickname %>：</strong>
+                <%= comment.content %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>
