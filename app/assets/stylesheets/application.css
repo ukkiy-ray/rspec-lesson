@@ -14,7 +14,7 @@
  *= require_self
  */
 
- .container {
+ .post-container {
    height: 150vh;
  }
 
@@ -84,4 +84,21 @@
  .user-name {
    color: #999;
    margin-left: 8px;
+ }
+
+ .detail-title {
+   margin-top: 40px;
+ }
+
+ .detail-contents {
+   margin-top: 20px;
+   width: auto;
+ }
+
+ .comments-box {
+   text-align: left;
+ }
+
+ .comment-list {
+   margin-top: 20px;
  }
