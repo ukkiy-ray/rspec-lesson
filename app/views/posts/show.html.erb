@@ -49,8 +49,15 @@
         <ul class="list-group comment-list">
           <% @comments.each do |comment| %>
             <li class="list-group-item">
-                <strong><%= comment.user.nickname %>：</strong>
-                <%= comment.content %>
+                <div class="comment-left">
+                  <strong><%= comment.user.nickname %>：</strong>
+                  <%= comment.content %>
+                </div>
+                <% if user_signed_in? && comment.user.id == current_user.id %>
+                  <%= link_to "/posts/#{@post.id}/comments/#{comment.id}", method: :delete, class:"destroy-comment" do %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
+                <% end %>
             </li>
           <% end %>
         </ul>
