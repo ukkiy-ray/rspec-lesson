@@ -3,7 +3,7 @@
   <hr>
   <br>
   <div class="col-md-6">
-  <%= form_with model: @post, url: posts_path, class:'form-wrap', local: true do |f| %>
+    <%= form_with model: @post, url: posts_path, class:'form-wrap', local: true do |f| %>
       <div class="input-group mb-3">
         
         <%= f.text_area :title, class:"form-control", placeholder:"Title", rows: "1" %>
@@ -17,6 +17,6 @@
       <%= f.file_field :image, type:"file", class:"form-control", id:"customFile" %>
       <br>
       <%= f.submit "Submit", class: "btn btn-info" %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

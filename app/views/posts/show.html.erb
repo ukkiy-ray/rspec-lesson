@@ -39,6 +39,7 @@
           <div class="form-outline">
             <%= form.text_field :content, id:"formControlDefault", class:"form-control form-control" %>
             <label class="form-label" for="formControlDefault">公開コメントを入力</label>
+            <%= form.submit "Submit", class: "btn btn-info" %>
           </div>
         <% end %>
       <% else %>
