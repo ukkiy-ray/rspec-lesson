@@ -29,17 +29,12 @@
     <div class="col-6 comments-box">
       <h2><i class="fas fa-comment"></i> Comments</h2>
 
-      <%# <div class="form-outline">
-        <input type="text" id="formControlDefault" class="form-control form-control-lg" />
-        <label class="form-label" for="formControlDefault">コメントをする</label>
-      </div> %>
-
       <% if user_signed_in? %>
         <%= form_with(model: [@post, @comment], local: true) do |form| %>
           <div class="form-outline">
             <%= form.text_field :content, id:"formControlDefault", class:"form-control form-control" %>
             <label class="form-label" for="formControlDefault">公開コメントを入力</label>
-            <%= form.submit "Submit", class: "btn btn-info" %>
+            <%#= form.submit "Submit", class: "btn btn-info" %>
           </div>
         <% end %>
       <% else %>
