@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="tweet-top-content">
+    <h1>Tweet 一覧</h1>
+    <hr>
+  </div>
+  <% if user_signed_in? %>
+    <%= form_with(model: @tweet, method: :post, local: true) do |form| %>
+      <div class="form-outline">
+        <%= form.text_field :content, id:"formControlDefault", class:"form-control" %>
+        <label class="form-label" for="formControlDefault">つぶやいてみよう！</label>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="tweet-container">
+    
+    <% if @tweets.present? %>
+      <ul class="list-group">
+        <% @tweets.each do |t| %>
+          <li class="list-group-item">
+            <%= t.content %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
