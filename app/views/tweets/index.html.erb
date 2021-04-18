@@ -20,6 +20,7 @@
           <% @tweets.each do |t| %>
             <li class="list-group-item">
               <%= t.content %>
+              <%= l t.created_at %>
               <% if user_signed_in? && t.user.id == current_user.id %>
                 <%= link_to tweet_path(t.id), method: :delete, class:"destroy-comment" do %>
                   <i class="fas fa-trash"></i>
